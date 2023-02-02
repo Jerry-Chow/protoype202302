@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+    <script src="js/jquery-3.6.3.min.js"></script>
+    <script src="js/jquery.cookie-1.4.1.min.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <div id="loginContainer">
+        <h2>ログイン</h2>
+        <div class="marginGap">
+            <label for="userId">
+                ユーザー名
+            </label>
+            <input id="userId" type="text" class="marginLeft">
+
+        </div>
+        <div class="marginGap">
+            <label for="password">
+                パスワード
+            </label>
+            <input id="password" type="password" class="marginLeft">
+        </div>
+        <div class="marginGap">
+            <input type="button" value="送信">
+        </div>
+    </div>
+</body>
+<script>
+    $(":button").click(function() {
+        if ($("#userId").val()=="admin"&&$("#password").val()=="admin"){
+            if ($.cookie("loginState",true,10/60/24)){
+                window.location.href="index.html";
+            }
+        }else{
+            alert("ログイン失敗！")
+        }
+    })
+</script>
+</html>
