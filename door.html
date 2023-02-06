@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ドアサーバー接続設定</title>
+    <link rel="stylesheet" href="css/base.css">
+    <script src="js/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="css/input.css">
+    <script src="js/load.js"></script>
+    <script src="js/jquery.cookie-1.4.1.min.js"></script>
+</head>
+<body><div id="userContainer">
+    <h2>ドアサーバー接続設定</h2>
+    <div class="marginGap">
+            <span>
+                新しいパスワードを入力し「確認」をクリックしてください。
+            </span>
+    </div>
+    <div>
+        変更中止する場合は、「中止」をクリックしてください。
+    </div>
+</div>
+<div style="width:650px;margin-left: auto;margin-right: auto;margin-top: 20px">
+    <div class="marginGap">
+        <label for="command">
+            コマンド
+        </label>
+        <input id="command" type="text" size="50" class="marginLeft" style="text-align: inherit;">
+    </div>
+    <div class="marginGap">
+        <label for="password">
+            宛先IPアドレス
+        </label>
+        <input id="password" type="text" class="marginLeft">
+    </div>
+    <div class="marginGap">
+        <label for="port">
+            ボート番号
+        </label>
+        <input id="port" type="text" class="marginLeft">
+    </div>
+    <div class="marginGap">
+        <label for="timeout">
+            タイムアウト「秒」
+        </label>
+        <input id="timeout" type="text" class="marginLeft">
+    </div>
+    <div class="marginGap">
+        <label for="doorOpenDuration">
+            解錠時間「秒」
+        </label>
+        <input id="doorOpenDuration" type="text" class="marginLeft">
+    </div>
+    <div class="marginGap">
+        <label>
+            カード暗号化
+        </label>
+        <div  style="display:inline-block;">
+            <input id="static" type="radio" name="ipGet" value="0" checked="checked">
+            <label for="static" class="radioLabel">
+                無効
+            </label>
+        </div>
+        <div  style="display:inline-block;">
+            <input id="dhcp" type="radio" name="ipGet" value="1" >
+            <label for="dhcp" class="radioLabel">
+                有効
+            </label>
+        </div>    </div>
+    <div class="userSetDiv" style="margin-top: 70px;">
+        <input id="confirm" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
+        <input id="stop" type="button" class="userSetBtn" value="中止" >
+    </div>
+</div>
+</body>
+<script>
+    $("#confirm").click(function () {
+        alert("設定成功。")
+    })
+    $("#stop").click(function () {
+        window.close();
+    })
+</script>
+</html>

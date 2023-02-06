@@ -1,3 +1,22 @@
 input {
-    text-align: center;
+     text-align: center;
+}
+
+.labelInline {
+    float: left;
+    clear: none;
+    display: block;
+    /*padding: 0px 1em 0px 8px;*/
+}
+
+input[type=radio],
+input.radio {
+    float: left;
+    clear: none;
+    vertical-align: middle;
+    /*margin: 2px 0 0 2px;*/
+}
+
+.radioLabel {
+    min-width:35px;
 }

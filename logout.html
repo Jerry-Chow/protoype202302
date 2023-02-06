@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログアウト</title>
+    <script src="js/jquery-3.6.3.min.js"></script>
+    <script src="js/jquery.cookie-1.4.1.min.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+    <div id="loginContainer">
+        <h2>ログアウト</h2>
+        <div class="marginGap">
+            <span>
+                設定変更した場合はリブートしてください。
+            </span>
+        </div>
+
+        <div class="loginContainer" style="margin-top: 70px;">
+            <input type="button" value="リブート" class="text-center">
+        </div>
+    </div>
+
+</body>
+<script>
+    $(":button").click(function() {
+        alert("リブートしています、少々お待ちください。")
+    })
+</script>
+</html>
