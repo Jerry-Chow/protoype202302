@@ -116,7 +116,7 @@
 . 通信
 +
 |====================
-| URL       2+|/time  
+| URL       2+|/control
 |  http method 2+|  post
 3+|data
 | command    | 命令        |      
