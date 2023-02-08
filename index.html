@@ -187,4 +187,10 @@
     </div>
 </body>
 <script src="js/load.js"></script>
+<script>
+    $("#btnLogout").click(function () {
+        $.removeCookie("loginState");
+        window.location.href="login.html";
+    })
+</script>
 </html>
