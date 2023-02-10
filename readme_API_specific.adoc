@@ -40,7 +40,8 @@
 | time       | 服务器时间  | "1:00:00"
 | datetime       | 服务器时间  | ?服务器时间前端需要走秒吗？
 | ntp        | ntp 服务器  |
-| ipSync     | ip取得方法  | 0;1 
+| ipSync     | ip取得方法  | 0;1
+| ipType     | ip取得方法(String)  | "固定IP"/"DHCP"
 | ip         | ip          |
 | port       | port        | 
 | gateway    | 网关        |                   
@@ -51,7 +52,9 @@
 | serverPort | 服务器 Port |                    
 | timeout    | 超时        |                    
 | duration   | 开门延迟    |                    
-| card       | 卡号加密    | 0;1                
+| card       | 卡号加密    | 0;1
+| cardType   | 卡号加密(String)    |"有効"/"無効"
+| userId   | 用户名    |
 |====================
 
 

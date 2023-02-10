@@ -10,6 +10,7 @@
 </head>
 <body>
     <div id="wrapper">
+        <form>
         <div id="head" class="center">
             <h1 class="text-center">設定一覧</h1>
         </div>
@@ -45,7 +46,7 @@
                         ■　カレンダー　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="2022/07/04 10:52:32" />
+                        <input name="datetime" type="text" size="35"  value="2022/07/04 10:52:32" />
                     </div>
                     <input type="button" value="編集" class="editButton" onclick="window.location='calender.html'">
                 </div>
@@ -54,7 +55,7 @@
                         NTPアドレス　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="ntp.nict.jp" />
+                        <input name="ntp" type="text" size="35"  value="ntp.nict.jp" />
                     </div>
                 </div>
             </div>
@@ -70,7 +71,7 @@
                         IP取得方法　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="固定IP" />
+                        <input name="ipType" type="text" size="35"  value="固定IP" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -78,7 +79,7 @@
                         IPアドレス　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="192.168.1.201" />
+                        <input name="ip" type="text" size="35"  value="192.168.1.201" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -86,7 +87,7 @@
                         ポート番号　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="26000" />
+                        <input name="port" type="text" size="35"  value="26000" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -94,7 +95,7 @@
                         ゲートウェイ　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="192.168.1.1" />
+                        <input name="gateway" type="text" size="35"  value="192.168.1.1" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -102,7 +103,7 @@
                         サブネットワーク　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="255.255.255.0" />
+                        <input name="subnet" type="text" size="35"  value="255.255.255.0" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -110,7 +111,7 @@
                         部屋番号　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="10" />
+                        <input name="room" type="text" size="35"  value="10" />
                     </div>
                 </div>
             </div>
@@ -126,7 +127,7 @@
                         コマンド　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="" />
+                        <input name="command" type="text" size="35"  value="" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -134,7 +135,7 @@
                         IP　アドレス　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="10" />
+                        <input name="ip" type="text" size="35"  value="10" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -142,7 +143,7 @@
                         ポート番号　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="8080" />
+                        <input name="port" type="text" size="35"  value="8080" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -150,7 +151,7 @@
                         タイアウト[秒]　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="5" />
+                        <input name="timeout" type="text" size="35"  value="5" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -158,7 +159,7 @@
                         解錠時間[秒]　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="5" />
+                        <input name="duration" type="text" size="35"  value="5" />
                     </div>
                 </div>
                 <div class="line-n">
@@ -166,7 +167,7 @@
                         カード暗号化 　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="自動" />
+                        <input name="cardType" type="text" size="35"  value="自動" />
                     </div>
                 </div>
             </div>
@@ -176,7 +177,7 @@
                         ■　ユーザー登録　
                     </div>
                     <div class="cn">
-                        <input type="text" size="35"  value="admin" />
+                        <input name="userId" type="text" size="35"  value="admin" />
                     </div>
                     <input type="button" value="編集" class="editButton" onclick="window.location.href='user.html'">
                 </div>
@@ -184,6 +185,7 @@
         </div>
         <div id="footer">
         </div>
+        </form>
     </div>
 </body>
 <script src="js/load.js"></script>
