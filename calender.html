@@ -22,29 +22,31 @@
 
 </div>
 <div style="width:650px;margin-left: auto;margin-right: auto;margin-top: 20px">
+    <form action="/time">
     <div class="marginGap">
         <label for="date">
             日付
         </label>
-        <input id="date" type="date" class="marginLeft" style="width:143px">
+        <input id="date" name="date" type="date" class="marginLeft" style="width:143px">
 
     </div>
     <div class="marginGap">
         <label for="time">
             時刻
         </label>
-        <input id="time" type="time" class="marginLeft" style="width:143px">
+        <input id="time" name="time" type="time" class="marginLeft" style="width:143px">
     </div>
     <div class="marginGap">
-        <label for="password2">
+        <label for="ntp">
             NTPアドレス
         </label>
-        <input id="password2" type="text" class="marginLeft">
+        <input id="ntp" name="ntp" type="text" class="marginLeft">
     </div>
     <div class="userSetDiv" style="margin-top: 70px;">
         <input id="confirm" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
         <input id="stop" type="button" class="userSetBtn" value="中止" >
     </div>
+    </form>
 </div>
 </body>
 <script src="js/load.js"></script>
