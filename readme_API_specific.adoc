@@ -36,7 +36,9 @@
 3+|data
 | firmware   | 固件版本    |
 | mac        | mac         |
-| time       | 服务器时间  | ?服务器时间前端需要走秒吗？
+| date       | 服务器日期  |"2023-02-01"
+| time       | 服务器时间  | "1:00:00"
+| datetime       | 服务器时间  | ?服务器时间前端需要走秒吗？
 | ntp        | ntp 服务器  |
 | ipSync     | ip取得方法  | 0;1 
 | ip         | ip          |
@@ -98,7 +100,7 @@
 . 网络
 +
 |====================
-| URL       2+|/netword  
+| URL       2+|/network
 |  http method 2+|  post
 3+|data
 | ip         | ip          |

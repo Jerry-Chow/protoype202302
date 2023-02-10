@@ -23,6 +23,7 @@
             </span>
     </div>
 </div>
+<form action="/network">
 <div style="width:650px;margin-left: auto;margin-right: auto;margin-top: 20px">
     <div class="marginGap">
         <label for="userId">
@@ -30,13 +31,13 @@
         </label>
         <div id="userId" style="display:inline-block;">
             <div  style="display:inline-block;">
-            <input id="static" type="radio" name="ipGet" value="0" checked="checked">
+            <input id="static" type="radio" name="ipSync" value="0" checked="checked">
             <label for="static" class="radioLabel">
                 固定IP
             </label>
             </div>
             <div  style="display:inline-block;">
-            <input id="dhcp" type="radio" name="ipGet" value="1" >
+            <input id="dhcp" type="radio" name="ipSync" value="1" >
             <label for="dhcp" class="radioLabel">
                 DHCP
             </label>
@@ -45,34 +46,34 @@
 
     </div>
     <div class="marginGap">
-        <label for="password">
+        <label for="ip">
             IPアドレス＊
         </label>
-        <input id="password" type="text" class="marginLeft">
+        <input id="ip" name="ip" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
-        <label for="password2">
+        <label for="port">
             ボート番号
         </label>
-        <input id="password2" type="text" class="marginLeft">
+        <input id="port" name="port" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="gateway">
             ゲートウェイ＊
         </label>
-        <input id="gateway" type="text" class="marginLeft">
+        <input id="gateway" name="gateway"  type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="subnet">
             サブネットマスク＊
         </label>
-        <input id="subnet" type="text" class="marginLeft">
+        <input id="subnet" name="subnet" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
-        <label for="houseNumber">
+        <label for="room">
             部屋番号
         </label>
-        <input id="houseNumber" type="text" class="marginLeft">
+        <input id="room" name="room" type="text" class="marginLeft">
     </div>
     <div class="marginGap" style="margin-top: 50px">
             <span>
@@ -84,6 +85,7 @@
         <input id="stop" type="button" class="userSetBtn" value="中止" >
     </div>
 </div>
+</form>
 </body>
 <script src="js/load.js"></script>
 </html>
