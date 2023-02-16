@@ -20,57 +20,82 @@
     </div>
 </div>
 <div style="width:650px;margin-left: auto;margin-right: auto;margin-top: 20px">
+    <form action="/control">
     <div class="marginGap">
         <label for="command">
             コマンド
         </label>
-        <input id="command" type="text" size="50" class="marginLeft" style="text-align: inherit;">
+        <input id="command" name="command" type="text" size="50" class="marginLeft" style="text-align: inherit;">
     </div>
     <div class="marginGap">
-        <label for="password">
+        <label for="ip">
             宛先IPアドレス
         </label>
-        <input id="password" type="text" class="marginLeft">
+        <input id="ip" name="ip" type="text" size="50" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="port">
             ボート番号
         </label>
-        <input id="port" type="text" class="marginLeft">
+        <input id="port" name="port" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="timeout">
             タイムアウト「秒」
         </label>
-        <input id="timeout" type="text" class="marginLeft">
+        <input id="timeout" name="timeout" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
-        <label for="doorOpenDuration">
+        <label for="duration">
             解錠時間「秒」
         </label>
-        <input id="doorOpenDuration" type="text" class="marginLeft">
+        <input id="duration" name="duration" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label>
             カード暗号化
         </label>
         <div  style="display:inline-block;">
-            <input id="static" type="radio" name="ipGet" value="0" checked="checked">
-            <label for="static" class="radioLabel">
+            <input id="card" type="radio" name="card" value="0" checked="checked">
+            <label for="card" class="radioLabel">
                 無効
             </label>
         </div>
         <div  style="display:inline-block;">
-            <input id="dhcp" type="radio" name="ipGet" value="1" >
-            <label for="dhcp" class="radioLabel">
+            <input id="card2" name="card"  type="radio" value="1" >
+            <label for="card2" class="radioLabel">
                 有効
             </label>
-        </div>    </div>
+        </div>
+        <div class="marginGap hide">
+            <label for="decryptKey">
+                暗号化キー
+            </label>
+            <input id="decryptKey" name="duration" type="text" class="marginLeft">
+        </div>
+        <div class="marginGap hide">
+            <label for="decryptIv">
+                暗号化IV
+            </label>
+            <input id="decryptIv" name="duration" type="text" class="marginLeft">
+        </div>
+    </div>
     <div class="userSetDiv" style="margin-top: 70px;">
         <input id="confirm" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
         <input id="stop" type="button" class="userSetBtn" value="中止" >
     </div>
+    </form>
 </div>
 </body>
 <script src="js/load.js"></script>
+<script>
+    $(".hide").hide();
+    $("input[type='radio']").change(function () {
+        if($(":checked").val()==0){
+            $(".hide").hide();
+        }else {
+            $(".hide").show();
+        }
+    })
+</script>
 </html>
