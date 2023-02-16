@@ -11,10 +11,13 @@ input {
 
 input[type=radio],
 input.radio {
-    float: left;
+    /*float: left;*/
     clear: none;
     vertical-align: middle;
     /*margin: 2px 0 0 2px;*/
+    /*height:100%;*/
+    margin-top: auto;
+    margin-right: auto;
 }
 
 .radioLabel {
