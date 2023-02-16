@@ -11,7 +11,8 @@ $("#confirm").click(function () {
 })
 $("#stop").click(function () {
     // window.close();
-    window.open('about:blank', '_self').close();
+    // window.open('about:blank', '_self').close();
+    window.location.href="/";
 })
 
 $(function () {
