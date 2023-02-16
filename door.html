@@ -67,6 +67,18 @@
                 有効
             </label>
         </div>
+        <div class="marginGap hide">
+            <label for="decryptKey">
+                暗号化キー
+            </label>
+            <input id="decryptKey" name="duration" type="text" class="marginLeft">
+        </div>
+        <div class="marginGap hide">
+            <label for="decryptIv">
+                暗号化IV
+            </label>
+            <input id="decryptIv" name="duration" type="text" class="marginLeft">
+        </div>
     </div>
     <div class="userSetDiv" style="margin-top: 70px;">
         <input id="confirm" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
@@ -76,4 +88,14 @@
 </div>
 </body>
 <script src="js/load.js"></script>
+<script>
+    $(".hide").hide();
+    $("input[type='radio']").change(function () {
+        if($(":checked").val()==0){
+            $(".hide").hide();
+        }else {
+            $(".hide").show();
+        }
+    })
+</script>
 </html>
