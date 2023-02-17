@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
+<form action="user/updateAdminInfo  ">
 <div id="userContainer">
     <h2>ユーザー名、パスワード変更</h2>
     <div class="marginGap">
@@ -52,17 +53,30 @@
         <input id="password2" type="password" class="marginLeft">
     </div>
     <div class="userSetDiv" style="margin-top: 70px;">
-        <input id="confirm" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
+        <input id="confirmReset" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
         <input id="stop" type="button" class="userSetBtn" value="中止" >
     </div>
 </div>
+</form>
 </body>
-<script>
+<!--<script>
     $("#confirm").click(function () {
         alert("設定成功。")
     })
-    $("#stop").click(function () {
-        window.close();
-    })
-</script>
+</script>-->
+    <script>
+        function checkPassword() {
+            if ($("#password").val()!=$("#password2"))
+        }
+
+        /*$("#password,#password2").blur(function () {
+            checkPassword();
+        })*/
+
+        $("#confirmReset").click(function () {
+            checkPassword();
+            ajaxSubmit();
+        })
+    </script>
+    <script src="js/load.js"></script>
 </html>
