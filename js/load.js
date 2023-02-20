@@ -66,7 +66,7 @@ function ajaxSubmit() {
 
     $.ajax({
         type: "POST",
-        url: actionUrl+'?'+$.param(data),
+        url: actionUrl + '?' + $.param(data),
         // data: $form.serialize(), // serializes the form's elements.
         data: getFormData($form),
         dataType: "json",
@@ -74,7 +74,11 @@ function ajaxSubmit() {
             data: data
         }, // serializes the form's elements.
         success: function (data) {
-            alert("送信に成功しました。設定が完了したら、デバイスを再起動してください。"); // show response from the php script.
+            if (data && !data.ret && !isNaN(data.ret)) {
+                alert("送信に成功しました。設定が完了したら、デバイスを再起動してください。"); // show response from the php script.
+            } else {
+                alert("送信に失敗しました。" + data.msg);
+            }
         },
         error: function (data) {
             alert("送信に失敗しました。" + data.msg);
