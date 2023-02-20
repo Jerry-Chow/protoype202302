@@ -28,23 +28,38 @@ function loadJSON() {
         if (data && !data.ret && !isNaN(data.ret)) {
             $.each(data.data, function (key, item) {
                 let $ctrl = $('[name=' + key + ']', "form");
-                switch ($ctrl.prop("type")) {
-                    case "radio":
-                    case "checkbox":
-                        $ctrl.each(function () {
-                            if ($(this).attr('value') == value) {
-                                $(this).attr("checked", value);
-                            }
-                        })
-                        break;
-                    //By Jerry 20230217
-                    case undefined:
-                        $ctrl.text(item);
-                        break;
-                    default:
-                        $ctrl.val(item);
+                if ($ctrl && $ctrl.length > 0) {
+                    switch ($ctrl.prop("type")) {
+                        case "radio":
+                        case "checkbox":
+                            $ctrl.each(function () {
+                                if ($(this).attr('value') == item) {
+                                    $(this).attr("checked", item).change();
+                                }
+                            })
+                            break;
+                        //By Jerry 20230217
+                        case undefined:
+                            $ctrl.text(item);
+                            break;
+                        default:
+                            $ctrl.val(item).change();
+                    }
                 }
             })
+            //20230220 处理 date+time和其他新增
+            let date = data.data.date;
+            let time = data.data.time;
+            $('[name=datetime]').val(date + ' ' + time);
+
+            let ipType = data.data.ipSync;
+            let $ctrIp = $('[name=ipSync]');
+            ipType == "0" ? $ctrIp.val("固定IP") : $ctrIp.val("DHCP");
+
+            let $ctrCard = $('[name=cardType]');
+            let cardType = data.data.cardEncrypt;
+            cardType == "1" ? $ctrCard.val("有効") : $ctrCard.val("無効");
+
         } else {
             alert("データー取得に失敗しました。")
         }
@@ -68,7 +83,7 @@ function ajaxSubmit() {
         type: "POST",
         url: actionUrl + '?' + $.param(data),
         // data: $form.serialize(), // serializes the form's elements.
-        data: getFormData($form),
+        // data: getFormData($form),
         dataType: "json",
         data: {
             data: data

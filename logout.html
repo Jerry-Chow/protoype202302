@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
+<form action="/device/reboot">
     <div id="loginContainer">
         <h2>ログアウト</h2>
         <div class="marginGap">
@@ -22,11 +23,41 @@
         </div>
         </form>
     </div>
-
+</form>
 </body>
 <script>
     $(":button").click(function() {
-        alert("リブートしています、少々お待ちください。")
+        $.removeCookie("loginState");
+
+        var $form = $("form");
+        var actionUrl = $form.attr('action');
+        // var actionUrl = "https://eopz8ly41cg8q6s.m.pipedream.net";
+        // let data = $form.serialize();
+        // let data = $form.serialize();
+        let data = '';
+
+        $.ajax({
+            type: "POST",
+            url: actionUrl + '?' + $.param(data),
+            // data: $form.serialize(), // serializes the form's elements.
+            dataType: "json",
+            data: {
+                data: data
+            }, // serializes the form's elements.
+            success: function (data) {
+                if (data && !data.ret && !isNaN(data.ret)) {
+                    alert("リブートしています、少々お待ちください。");
+                    // alert("送信に成功しました。設定が完了したら、デバイスを再起動してください。"); // show response from the php script.
+                } else {
+                    alert("送信に失敗しました。" + data.msg);
+                }
+            },
+            error: function (data) {
+                alert("送信に失敗しました。" + data.msg);
+            }
+        });
+
+        // alert("リブートしています、少々お待ちください。");
     })
 </script>
 </html>

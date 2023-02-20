@@ -16,7 +16,7 @@
         </div>
         <div id="content">
             <div id="logout">
-                <input id="btnLogout" type="button" value="ログアウト" class="right">
+                <input id="btnLogout" type="button" value="ログアウト" class="right" onclick="window.location='logout.html'">
             </div>
             <div id="version" class="border">
                 <div>
@@ -190,9 +190,9 @@
 </body>
 <script src="js/load.js"></script>
 <script>
-    $("#btnLogout").click(function () {
+/*    $("#btnLogout").click(function () {
         $.removeCookie("loginState");
         window.location.href="login.html";
-    })
+    })*/
 </script>
 </html>
