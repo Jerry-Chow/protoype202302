@@ -16,14 +16,14 @@
         </div>
         <div id="content">
             <div id="logout">
-                <input id="btnLogout" type="button" value="ログアウト" class="right">
+                <input id="btnLogout" type="button" value="ログアウト" class="right" onclick="window.location='logout.html'">
             </div>
             <div id="version" class="border">
                 <div>
                     <div class="c1">
                         ■　ファームウェア　
                     </div>
-                    <div class="cn">
+                    <div class="cn" name="firmware">
                         NCK Ver 1.0.0
                     </div>
                 <!--<input type="button" value="編集" class="editButton">-->
@@ -34,8 +34,8 @@
                     <div class="c1">
                         ■　MACアドレス　
                     </div>
-                    <div class="cn">
-                        AA-AA-AA-AA-AA-AA
+                    <div class="cn" name="mac">
+
                     </div>
                     <!--<input type="button" value="編集" class="editButton">-->
                 </div>
@@ -190,9 +190,9 @@
 </body>
 <script src="js/load.js"></script>
 <script>
-    $("#btnLogout").click(function () {
+/*    $("#btnLogout").click(function () {
         $.removeCookie("loginState");
         window.location.href="login.html";
-    })
+    })*/
 </script>
 </html>

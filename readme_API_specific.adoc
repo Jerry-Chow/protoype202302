@@ -7,7 +7,7 @@
 
 数据交换格式为 json;
 
-通信端口：80？
+通信端口：26000
 
 ====
 
@@ -15,13 +15,13 @@
 
 [width="100%"]
 |====================
-| URL       2+|/login  
+| URL       2+|/device/login
 |  http method 2+|  post
 3+|data
 | userId | 用户名|  "admin"
 |  password| 密码|  "admin"
 3+|数据返回
-| ret | 结果 |true:成功 false:失败
+| ret | 结果 |0:成功 -1:失败
 | msg | 返回消息（String）|
 | data | 数据 |
 |====================
@@ -31,17 +31,15 @@
 [width="100%"]
 |====================
 3+|统一使用一个接口获取所有的数据，简化接口数量
-| URL       2+|/data  
+| URL       2+|/device/getAllData
 |  http method 2+|  get
 3+|data
 | firmware   | 固件版本    |
 | mac        | mac         |
 | date       | 服务器日期  |"2023-02-01"
 | time       | 服务器时间  | "1:00:00"
-| datetime       | 服务器时间  | ?服务器时间前端需要走秒吗？
 | ntp        | ntp 服务器  |
-| ipSync     | ip取得方法  | 0;1
-| ipType     | ip取得方法(String)  | "固定IP"/"DHCP"
+| ipSync     | ip取得方法  | 0:固定 ip;1：DHCP
 | ip         | ip          |
 | port       | port        | 
 | gateway    | 网关        |                   
@@ -52,24 +50,27 @@
 | serverPort | 服务器 Port |                    
 | timeout    | 超时        |                    
 | duration   | 开门延迟    |                    
-| card       | 卡号加密    | 0;1
+| cardEncrypt  | 卡号加密    | 0;1
 | cardType   | 卡号加密(String)    |"有効"/"無効"
+| decryptKey | 解密密钥    |
+| decryptIv  | 解密IV      |
 | userId   | 用户名    |
 |====================
 
 
 ## 提交（除登录外的其他页面数据）
 [width="100%"]
-. 修改密码
+. 修改管理员账号密码
 +
 |====================
-| URL       2+|/reset  
+| URL       2+|/user/updateAdminInfo
 |  http method 2+|  post
 3+|data
 | userId | 用户名|  "admin"
-|  password| 密码|  "admin"
+|  password| 第一次输入新密码|  "admin"
+|  password2| 第二次输入新密码|  "admin"
 3+|数据返回
-| ret | 结果 |true:成功 false:失败
+| ret | 结果 |0:成功 -1:失败
 | msg | 返回消息（String）|
 | data | 数据 |
 |====================
@@ -77,11 +78,11 @@
 . 重启
 +
 |====================
-| URL       2+|/reboot  
+| URL       2+|/device/reboot
 |  http method 2+|  post
 3+|data
 3+|数据返回
-| ret | 结果 |true:成功 false:失败
+| ret | 结果 |0:成功 -1:失败
 | msg | 返回消息（String）|
 | data | 数据 |
 |====================
@@ -89,13 +90,13 @@
 . 时间
 +
 |====================
-| URL       2+|/time  
+| URL       2+|/device/setTime
 |  http method 2+|  post
 3+|data
 | time       | 服务器时间  | ?服务器时间前端需要走秒吗？
 | ntp        | ntp 服务器  |
 3+|数据返回
-| ret | 结果 |true:成功 false:失败
+| ret | 结果 |0:成功 -1:失败
 | msg | 返回消息（String）|
 | data | 数据 |
 |====================
@@ -103,7 +104,7 @@
 . 网络
 +
 |====================
-| URL       2+|/network
+| URL       2+|/device/setNetwork
 |  http method 2+|  post
 3+|data
 | ip         | ip          |
@@ -112,7 +113,7 @@
 | subnet     | 子网        | 
 | room       | 房间编号    | 
 3+|数据返回
-| ret | 结果 |true:成功 false:失败
+| ret | 结果 |0:成功 -1:失败
 | msg | 返回消息（String）|
 | data | 数据 |
 |====================
@@ -121,7 +122,7 @@
 . 通信
 +
 |====================
-| URL       2+|/control
+| URL       2+|/device/setServerControl
 |  http method 2+|  post
 3+|data
 | command    | 命令        |      
@@ -130,8 +131,10 @@
 | timeout    | 超时        |                    
 | duration   | 开门延迟    |                    
 | card       | 卡号加密    | 0;1    
+| decryptKey | 解密密钥    |
+| decryptIv  | 解密IV      |
 3+|数据返回
-| ret | 结果 |true:成功 false:失败
+| ret | 结果 |0:成功 -1:失败
 | msg | 返回消息（String）|
 | data | 数据 |
 |====================

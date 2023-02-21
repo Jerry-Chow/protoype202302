@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
+<form action="">
     <div id="loginContainer">
         <h2>ログイン</h2>
         <div class="marginGap">
@@ -27,16 +28,54 @@
             <input type="button" value="送信">
         </div>
     </div>
+</form>
 </body>
 <script>
     $(":button").click(function() {
-        if ($("#userId").val()=="admin"&&$("#password").val()=="admin"){
+        $.ajax({
+            contentType:"application/json",
+            dataType: "json",
+            type: "POST",
+            headers:{
+
+                        userId: $("#userId").val(),
+                        password:$("#password").val()
+
+            },
+            url:"/device/login?"+$.param({
+                userId: $("#userId").val(),
+                password:$("#password").val()
+            }),
+            // url:"https://eopz8ly41cg8q6s.m.pipedream.net",
+            data:
+                {
+                    data:
+                        {
+                            userId: $("#userId").val(),
+                            password:$("#password").val()
+                        }
+                },
+            success:function (data) {
+                if (data && !data.ret && !isNaN(data.ret)) {
+                    $.cookie("loginState",true,10*60*24)
+                    window.location.href = "index.html";
+                }else {
+                    alert("ログイン失敗！"+data.msg);
+                }
+            },
+            error:function (data) {
+                alert("ログイン失敗！"+data.msg)
+            }
+        })
+
+
+        /*if ($("#userId").val()=="admin"&&$("#password").val()=="admin"){
             if ($.cookie("loginState",true,10/60/24)){
                 window.location.href="index.html";
             }
         }else{
             alert("ログイン失敗！")
-        }
+        }*/
     })
 </script>
 </html>

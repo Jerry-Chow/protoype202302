@@ -20,7 +20,7 @@
     </div>
 </div>
 <div style="width:650px;margin-left: auto;margin-right: auto;margin-top: 20px">
-    <form action="/control">
+    <form action="/device/setServerControl">
     <div class="marginGap">
         <label for="command">
             コマンド
@@ -31,13 +31,13 @@
         <label for="ip">
             宛先IPアドレス
         </label>
-        <input id="ip" name="ip" type="text" size="50" class="marginLeft">
+        <input id="ip" name="serverIp" type="text" size="50" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="port">
             ボート番号
         </label>
-        <input id="port" name="port" type="text" class="marginLeft">
+        <input id="port" name="serverPort" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="timeout">
@@ -56,28 +56,28 @@
             カード暗号化
         </label>
         <div  style="display:inline-block;">
-            <input id="card" type="radio" name="card" value="0" checked="checked">
+            <input id="card" type="radio" name="cardEncrypt" value="0">
             <label for="card" class="radioLabel">
                 無効
             </label>
         </div>
         <div  style="display:inline-block;">
-            <input id="card2" name="card"  type="radio" value="1" >
+            <input id="card2" name="cardEncrypt"  type="radio" value="1" >
             <label for="card2" class="radioLabel">
                 有効
             </label>
         </div>
         <div class="marginGap hide">
             <label for="decryptKey">
-                暗号化キー
+                解読キー
             </label>
-            <input id="decryptKey" name="duration" type="text" class="marginLeft">
+            <input id="decryptKey" name="decryptKey" type="text" class="marginLeft">
         </div>
         <div class="marginGap hide">
             <label for="decryptIv">
-                暗号化IV
+                解読IV
             </label>
-            <input id="decryptIv" name="duration" type="text" class="marginLeft">
+            <input id="decryptIv" name="decryptIv" type="text" class="marginLeft">
         </div>
     </div>
     <div class="userSetDiv" style="margin-top: 70px;">
