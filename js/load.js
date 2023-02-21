@@ -54,7 +54,7 @@ function loadJSON() {
                 $('[name=datetime]').val(date + ' ' + time);
 
                 let ipType = data.data.ipSync;
-                let $ctrIp = $('[name=ipSync]');
+                let $ctrIp = $('[name=ipType]');
                 ipType == "0" ? $ctrIp.val("固定IP") : $ctrIp.val("DHCP");
 
                 let $ctrCard = $('[name=cardType]');
