@@ -38,9 +38,8 @@
 | mac        | mac         |
 | date       | 服务器日期  |"2023-02-01"
 | time       | 服务器时间  | "1:00:00"
-| datetime       | 服务器时间  | ?服务器时间前端需要走秒吗？
 | ntp        | ntp 服务器  |
-| ipSync     | ip取得方法  | 0;1
+| ipSync     | ip取得方法  | 0:固定 ip;1：DHCP
 | ip         | ip          |
 | port       | port        | 
 | gateway    | 网关        |                   
@@ -68,7 +67,8 @@
 |  http method 2+|  post
 3+|data
 | userId | 用户名|  "admin"
-|  password| 密码|  "admin"
+|  password| 第一次输入新密码|  "admin"
+|  password2| 第二次输入新密码|  "admin"
 3+|数据返回
 | ret | 结果 |0:成功 -1:失败
 | msg | 返回消息（String）|

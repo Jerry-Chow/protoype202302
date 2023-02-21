@@ -18,15 +18,15 @@
         </div>
         <form action="/device/reboot">
 
-        <div class="loginContainer" style="margin-top: 70px;">
-            <input type="button" value="リブート" class="text-center">
-        </div>
+            <div class="loginContainer" style="margin-top: 70px;">
+                <input type="button" value="リブート" class="text-center">
+            </div>
         </form>
     </div>
 </form>
 </body>
 <script>
-    $(":button").click(function() {
+    $(":button").click(function () {
         $.removeCookie("loginState");
 
         var $form = $("form");
@@ -48,6 +48,7 @@
                 if (data && !data.ret && !isNaN(data.ret)) {
                     alert("リブートしています、少々お待ちください。");
                     // alert("送信に成功しました。設定が完了したら、デバイスを再起動してください。"); // show response from the php script.
+                    window.location.href = "login.html";
                 } else {
                     alert("送信に失敗しました。" + data.msg);
                 }

@@ -34,7 +34,7 @@ function loadJSON() {
                         case "checkbox":
                             $ctrl.each(function () {
                                 if ($(this).attr('value') == item) {
-                                    $(this).attr("checked", item).change();
+                                    $(this).attr("checked", 'checked').change();
                                 }
                             })
                             break;
@@ -48,18 +48,19 @@ function loadJSON() {
                 }
             })
             //20230220 处理 date+time和其他新增
-            let date = data.data.date;
-            let time = data.data.time;
-            $('[name=datetime]').val(date + ' ' + time);
+            if (window.location.href.includes("index")){
+                let date = data.data.date;
+                let time = data.data.time;
+                $('[name=datetime]').val(date + ' ' + time);
 
-            let ipType = data.data.ipSync;
-            let $ctrIp = $('[name=ipSync]');
-            ipType == "0" ? $ctrIp.val("固定IP") : $ctrIp.val("DHCP");
+                let ipType = data.data.ipSync;
+                let $ctrIp = $('[name=ipSync]');
+                ipType == "0" ? $ctrIp.val("固定IP") : $ctrIp.val("DHCP");
 
-            let $ctrCard = $('[name=cardType]');
-            let cardType = data.data.cardEncrypt;
-            cardType == "1" ? $ctrCard.val("有効") : $ctrCard.val("無効");
-
+                let $ctrCard = $('[name=cardType]');
+                let cardType = data.data.cardEncrypt;
+                cardType == "1" ? $ctrCard.val("有効") : $ctrCard.val("無効");
+            }
         } else {
             alert("データー取得に失敗しました。")
         }
@@ -90,7 +91,7 @@ function ajaxSubmit() {
         }, // serializes the form's elements.
         success: function (data) {
             if (data && !data.ret && !isNaN(data.ret)) {
-                alert("送信に成功しました。設定が完了したら、デバイスを再起動してください。"); // show response from the php script.
+                alert("送信に成功しました。" ); // show response from the php script.
             } else {
                 alert("送信に失敗しました。" + data.msg);
             }
