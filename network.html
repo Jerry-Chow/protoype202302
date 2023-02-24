@@ -7,6 +7,9 @@
     <script src="js/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="css/input.css">
     <script src="js/jquery.cookie-1.4.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/messages_ja.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
 </head>
 <body>
 <div id="userContainer">
@@ -49,7 +52,7 @@
         <label for="ip">
             IPアドレス＊
         </label>
-        <input id="ip" name="ip" type="text" class="marginLeft">
+        <input id="ip" name="ip" type="text" class="marginLeft" required>
     </div>
     <div class="marginGap">
         <label for="port">
@@ -61,13 +64,13 @@
         <label for="gateway">
             ゲートウェイ＊
         </label>
-        <input id="gateway" name="gateway"  type="text" class="marginLeft">
+        <input id="gateway" name="gateway"  type="text" class="marginLeft" required>
     </div>
     <div class="marginGap">
         <label for="subnet">
             サブネットマスク＊
         </label>
-        <input id="subnet" name="subnet" type="text" class="marginLeft">
+        <input id="subnet" name="subnet" type="text" class="marginLeft" required>
     </div>
     <div class="marginGap">
         <label for="room">
@@ -81,11 +84,39 @@
             </span>
     </div>
     <div class="userSetDiv" style="margin-top: 70px;">
-        <input id="confirm" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
+        <input type="submit" class="userSetBtn" style="margin-right: 250px" value="確定" >
         <input id="stop" type="button" class="userSetBtn" value="中止" >
     </div>
 </div>
 </form>
 </body>
 <script src="js/load.js"></script>
+<script>
+    $(function () {
+        $("form").validate({
+            rules: {
+                port:{
+                    required: true,
+                    pattern:/^\d{1,5}$/
+                },
+                room:{
+                    required: true,
+                    pattern:/^\d{1,5}$/
+                }
+            },
+            messages: {
+                port:{
+                    pattern: "数字で正しく入力してください。"
+                },
+                room:{
+                    pattern: "数字で正しく入力してください。"
+                }
+            },
+            submitHandler: function (){
+                ajaxSubmit();
+                // alert("OK");
+            }
+        });
+    })
+</script>
 </html>

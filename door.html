@@ -7,6 +7,9 @@
     <script src="js/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="css/input.css">
     <script src="js/jquery.cookie-1.4.1.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/messages_ja.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
 </head>
 <body><div id="userContainer">
     <h2>ドアサーバー接続設定</h2>
@@ -25,13 +28,13 @@
         <label for="command">
             コマンド
         </label>
-        <input id="command" name="command" type="text" size="50" class="marginLeft" style="text-align: inherit;">
+        <input id="command" name="command" type="text" size="50" class="marginLeft" style="text-align: inherit;" required>
     </div>
     <div class="marginGap">
         <label for="ip">
             宛先IPアドレス
         </label>
-        <input id="ip" name="serverIp" type="text" size="50" class="marginLeft">
+        <input id="ip" name="serverIp" type="text" size="50" class="marginLeft" required>
     </div>
     <div class="marginGap">
         <label for="port">
@@ -81,21 +84,86 @@
         </div>
     </div>
     <div class="userSetDiv" style="margin-top: 70px;">
-        <input id="confirm" type="button" class="userSetBtn" style="margin-right: 250px" value="確定" >
+        <input id="" type="submit" class="userSetBtn" style="margin-right: 250px" value="確定" >
         <input id="stop" type="button" class="userSetBtn" value="中止" >
     </div>
     </form>
 </div>
 </body>
+
 <script src="js/load.js"></script>
 <script>
     $(".hide").hide();
     $("input[type='radio']").change(function () {
-        if($(":checked").val()==0){
+        if($(":checked").val()=="0"){
             $(".hide").hide();
         }else {
             $(".hide").show();
         }
     })
+
+
+    function checkWithOnOff(value,pattern) {
+        let $ctr = $(":checked");
+        if ($ctr && $ctr.val() == "1"){
+            return !!value && pattern.test(value);
+        }
+        return true;
+    }
+
+    jQuery.validator.addMethod("checkWithOnOff",function (value,element,pattern) {
+        return this.optional(element) == true || checkWithOnOff(value,pattern);
+    })
+
+    $(function () {
+        $("form").validate({
+            rules: {
+                serverPort:{
+                    required: true,
+                    pattern:/^\d{1,5}$/
+                },
+                timeout:{
+                    required: true,
+                    pattern:/^\d+$/
+                },
+                duration:{
+                    required: true,
+                    pattern:/^\d{1,5}$/
+                },
+                decryptKey:{
+                    required:true,
+                    // checkWithOnOff:/^[a-zA-Z0-9]{1,26}$/
+                    pattern:/^[a-zA-Z0-9]{1,26}$/
+                },
+                decryptIv:{
+                    required:true,
+                    // checkWithOnOff:/^[a-zA-Z0-9]{1,26}$/
+                    pattern:/^[a-zA-Z0-9]{1,26}$/
+                },
+            },
+            messages: {
+                serverPort:{
+                    pattern: "数字で正しく入力してください。"
+                },
+                timeout:{
+                    pattern: "数字で正しく入力してください。"
+                },
+                duration:{
+                    pattern: "数字で正しく入力してください。"
+                },
+                decryptKey:{
+                    pattern: "英数字26文字以内入力してください。"
+                },
+                decryptIv:{
+                    pattern: "英数字26文字以内入力してください。"
+                }
+            },
+            submitHandler: function (){
+                ajaxSubmit();
+                // alert("OK");
+            }
+        });
+    })
+
 </script>
 </html>

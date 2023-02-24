@@ -9,6 +9,13 @@ label {
     /*text-align: right;*/
 }
 
+label.error {
+    margin-left: 10px;
+    width: auto;
+    display: inline;
+    color: red;
+}
+
 #loginContainer {
     margin-left: auto;
     margin-right: auto;
