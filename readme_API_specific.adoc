@@ -38,6 +38,7 @@
 | mac        | mac         |
 | date       | 服务器日期  |"2023-02-01"
 | time       | 服务器时间  | "1:00:00"
+| ntpOn      | ntp 开启  |0:On ip;1：Off
 | ntp        | ntp 服务器  |
 | ipSync     | ip取得方法  | 0:固定 ip;1：DHCP
 | ip         | ip          |

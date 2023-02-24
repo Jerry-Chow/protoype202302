@@ -94,11 +94,11 @@ function ajaxSubmit() {
                 alert("送信に成功しました。" ); // show response from the php script.
                 window.location.href = "index.html";
             } else {
-                alert("送信に失敗しました。" + data.msg?data.msg:"");
+                alert("送信に失敗しました。".concat(!!data.msg?data.msg:""));
             }
         },
         error: function (data) {
-            alert("送信に失敗しました。" + data.msg);
+            alert("送信に失敗しました。".concat(!!data.msg?data.msg:""));
         }
     });
 }
