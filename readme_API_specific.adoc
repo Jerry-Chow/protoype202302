@@ -93,6 +93,7 @@
 | URL       2+|/device/setTime
 |  http method 2+|  post
 3+|data
+| date       | 服务器日期  | "2023-02-01"
 | time       | 服务器时间  | ?服务器时间前端需要走秒吗？
 | ntp        | ntp 服务器  |
 3+|数据返回
