@@ -28,13 +28,13 @@
         <label for="command">
             コマンド
         </label>
-        <input id="command" name="command" type="text" size="50" class="marginLeft" style="text-align: inherit;" required>
+        <input id="command" name="command" type="text" class="marginLeft" style="text-align: inherit;width: 200px;" required>
     </div>
     <div class="marginGap">
         <label for="ip">
             宛先IPアドレス
         </label>
-        <input id="ip" name="serverIp" type="text" size="50" class="marginLeft" required>
+        <input id="ip" name="serverIp" type="text" size="50" class="marginLeft" required style="width: 200px;">
     </div>
     <div class="marginGap">
         <label for="port">
@@ -118,30 +118,43 @@
     $(function () {
         $("form").validate({
             rules: {
+                serverIp:{
+                    required:true,
+                    pattern:/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+                },
                 serverPort:{
                     required: true,
-                    pattern:/^\d{1,5}$/
+                    // pattern:/^\d{1,5}$/
+                    min:1,
+                    max:65536
                 },
                 timeout:{
                     required: true,
-                    pattern:/^\d+$/
+                    // pattern:/^\d+$/
+                    min:1,
+                    max:60
                 },
                 duration:{
                     required: true,
-                    pattern:/^\d{1,5}$/
+                    // pattern:/^\d{1,5}$/
+                    min:1,
+                    max:99999
                 },
                 decryptKey:{
                     required:true,
                     // checkWithOnOff:/^[a-zA-Z0-9]{1,26}$/
-                    pattern:/^[a-zA-Z0-9]{1,26}$/
+                    pattern:/^[a-zA-Z0-9]{1,16}$/
                 },
                 decryptIv:{
                     required:true,
                     // checkWithOnOff:/^[a-zA-Z0-9]{1,26}$/
-                    pattern:/^[a-zA-Z0-9]{1,26}$/
+                    pattern:/^[a-zA-Z0-9]{1,16}$/
                 },
             },
             messages: {
+                serverIp:{
+                    pattern: "正しく入力してください。"
+                },
                 serverPort:{
                     pattern: "数字で正しく入力してください。"
                 },
@@ -152,10 +165,10 @@
                     pattern: "数字で正しく入力してください。"
                 },
                 decryptKey:{
-                    pattern: "英数字26文字以内入力してください。"
+                    pattern: "英数字16文字以内入力してください。"
                 },
                 decryptIv:{
-                    pattern: "英数字26文字以内入力してください。"
+                    pattern: "英数字16文字以内入力してください。"
                 }
             },
             submitHandler: function (){
