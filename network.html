@@ -52,7 +52,7 @@
         <label for="ip">
             IPアドレス＊
         </label>
-        <input id="ip" name="ip" type="text" class="marginLeft" required>
+        <input id="ip" name="ip" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="port">
@@ -64,13 +64,13 @@
         <label for="gateway">
             ゲートウェイ＊
         </label>
-        <input id="gateway" name="gateway"  type="text" class="marginLeft" required>
+        <input id="gateway" name="gateway"  type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="subnet">
             サブネットマスク＊
         </label>
-        <input id="subnet" name="subnet" type="text" class="marginLeft" required>
+        <input id="subnet" name="subnet" type="text" class="marginLeft">
     </div>
     <div class="marginGap">
         <label for="room">
@@ -95,21 +95,50 @@
     $(function () {
         $("form").validate({
             rules: {
+                ip:{
+                    // required:true,
+                    required:"#static:checked",
+                    pattern:/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+                },
                 port:{
                     required: true,
-                    pattern:/^\d{1,5}$/
+                    // required: "#static:checked",
+                    // pattern:/^\d{1,5}$/
+                    min:1,
+                    max:65536
+                },
+                gateway:{
+                    // required:true,
+                    required: "#static:checked",
+                    pattern:/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+                },
+                subnet:{
+                    // required:true,
+                    required: "#static:checked",
+                    pattern:/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
                 },
                 room:{
                     required: true,
-                    pattern:/^\d{1,5}$/
+                    // pattern:/^\d{1,5}$/
+                    min:1,
+                    max:99999
                 }
             },
             messages: {
+                ip:{
+                    pattern: "正しく入力してください。"
+                },
                 port:{
-                    pattern: "数字で正しく入力してください。"
+                    pattern: "正しく入力してください。"
+                },
+                gateway:{
+                    pattern: "正しく入力してください。"
+                },
+                subnet:{
+                    pattern: "正しく入力してください。"
                 },
                 room:{
-                    pattern: "数字で正しく入力してください。"
+                    pattern: "正しく入力してください。"
                 }
             },
             submitHandler: function (){
