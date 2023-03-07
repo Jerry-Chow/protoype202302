@@ -12,54 +12,54 @@
 </head>
 <body>
 <form action="/user/updateAdminInfo">
-<div id="userContainer">
-    <h2>ユーザー名、パスワード変更</h2>
-    <div class="marginGap">
+    <div id="userContainer">
+        <h2>ユーザー名、パスワード変更</h2>
+        <div class="marginGap">
             <span>
                 新しいパスワードを入力し「確認」をクリックしてください。
             </span>
-    </div>
-    <div>
-        変更中止する場合は、「中止」をクリックしてください。
-    </div>
+        </div>
+        <div>
+            変更中止する場合は、「中止」をクリックしてください。
+        </div>
 
-    <div class="marginGap" style="margin-top: 50px">
+        <div class="marginGap" style="margin-top: 50px">
             <span>
                 「使用可能な文字と文字長」
             </span>
+        </div>
+        <div>
+            ユーザー名、パスワードともに英字、数字
+        </div>
+        <div>
+            １６文字以内の文字列を使用できます。
+        </div>
     </div>
-    <div>
-        ユーザー名、パスワードともに英字、数字
-    </div>
-    <div>
-        １６文字以内の文字列を使用できます。
-    </div>
-</div>
-<div style="width:650px;margin-left: auto;margin-right: auto;margin-top: 20px">
-    <div class="marginGap">
-        <label for="userId">
-            新しいユーザー名
-        </label>
-        <input id="userId" name="userId" type="text" class="marginLeft">
+    <div style="width:650px;margin-left: auto;margin-right: auto;margin-top: 20px">
+        <div class="marginGap">
+            <label for="userId">
+                新しいユーザー名
+            </label>
+            <input id="userId" name="userId" type="text" class="marginLeft">
 
+        </div>
+        <div class="marginGap">
+            <label for="password">
+                新しいパスワード
+            </label>
+            <input id="password" name="password" type="password" class="marginLeft">
+        </div>
+        <div class="marginGap">
+            <label for="password2">
+                パスワード再入力
+            </label>
+            <input id="password2" name="password2" type="password" class="marginLeft">
+        </div>
+        <div class="userSetDiv" style="margin-top: 70px;">
+            <input id="confirmReset" type="submit" class="userSetBtn" style="margin-right: 250px" value="確定">
+            <input id="stop" type="button" class="userSetBtn" value="中止">
+        </div>
     </div>
-    <div class="marginGap">
-        <label for="password">
-            新しいパスワード
-        </label>
-        <input id="password" name="password" type="password" class="marginLeft">
-    </div>
-    <div class="marginGap">
-        <label for="password2">
-            パスワード再入力
-        </label>
-        <input id="password2" name="password2" type="password" class="marginLeft">
-    </div>
-    <div class="userSetDiv" style="margin-top: 70px;">
-        <input id="confirmReset" type="submit" class="userSetBtn" style="margin-right: 250px" value="確定" >
-        <input id="stop" type="button" class="userSetBtn" value="中止" >
-    </div>
-</div>
 </form>
 </body>
 <!--<script>
@@ -67,57 +67,57 @@
         alert("設定成功。")
     })
 </script>-->
-    <script>
-        /*$("#password,#password2").blur(function () {
-            checkPassword();
-        })*/
+<script>
+    /*$("#password,#password2").blur(function () {
+        checkPassword();
+    })*/
 
-        /*$("#confirmReset").click(function () {
-            if ($("#password").val()!="" && $("#password").val() === $("#password2").val()){
+    /*$("#confirmReset").click(function () {
+        if ($("#password").val()!="" && $("#password").val() === $("#password2").val()){
+            ajaxSubmit();
+        }else {
+            alert("パスワードが一致しません。再入力してください。");
+        }
+    })*/
+</script>
+<script src="js/load.js"></script>
+<script>
+    $(function () {
+        $("form").validate({
+            rules: {
+                userId: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 16,
+                    pattern: /^[a-zA-Z0-9]*$/
+                }, password: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 16,
+                    pattern: /^[a-zA-Z0-9]*$/
+                }, password2: {
+                    required: true,
+                    minlength: 1,
+                    maxlength: 16,
+                    pattern: /^[a-zA-Z0-9]*$/,
+                    equalTo: "#password"
+                }
+            },
+            messages: {
+                userId: {
+                    pattern: "正しく入力してください。"
+                }, password: {
+                    pattern: "正しく入力してください。"
+                }, password2: {
+                    pattern: "正しく入力してください。"
+                },
+            },
+            submitHandler: function () {
                 ajaxSubmit();
-            }else {
-                alert("パスワードが一致しません。再入力してください。");
-            }
-        })*/
-    </script>
-    <script src="js/load.js"></script>
-    <script>
-        $(function () {
-            $("form").validate({
-                rules:{
-                    userId:{
-                        required: true,
-                        minlength:1,
-                        maxlength:16,
-                        pattern:/^[a-zA-Z0-9]*$/
-                    },password:{
-                        required: true,
-                        minlength:1,
-                        maxlength:16,
-                        pattern:/^[a-zA-Z0-9]*$/
-                    },password2:{
-                        required: true,
-                        minlength:1,
-                        maxlength:16,
-                        pattern:/^[a-zA-Z0-9]*$/,
-                        equalTo: "#password"
-                    }
-                },
-                messages:{
-                    userId: {
-                        pattern:"正しく入力してください。"
-                    },password: {
-                        pattern:"正しく入力してください。"
-                    },password2: {
-                        pattern:"正しく入力してください。"
-                    },
-                },
-                submitHandler: function (){
-                    ajaxSubmit();
                 // alert("OK");
             }
 
-            });
-        })
-    </script>
+        });
+    })
+</script>
 </html>

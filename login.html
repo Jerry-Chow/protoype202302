@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
-<form action="">
+<form action="/device/login">
     <div id="loginContainer">
         <h2>ログイン</h2>
         <div class="marginGap">
@@ -25,57 +25,57 @@
             <input id="password" type="password" class="marginLeft">
         </div>
         <div class="marginGap">
-            <input type="button" value="送信">
+            <input type="submit" value="送信">
         </div>
     </div>
 </form>
 </body>
 <script>
-    $(":button").click(function() {
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+
+    function ajaxLogin() {
+        var $form = $("form");
+        var actionUrl = $form.attr('action');
+        // var actionUrl = "https://eopz8ly41cg8q6s.m.pipedream.net";
+        // let data = $form.serialize();
+        let data = getFormData($form);
+
         $.ajax({
-            contentType:"application/json",
-            dataType: "json",
             type: "POST",
-            headers:{
-
-                        userId: $("#userId").val(),
-                        password:$("#password").val()
-
-            },
-            url:"/device/login?"+$.param({
-                userId: $("#userId").val(),
-                password:$("#password").val()
-            }),
-            // url:"https://eopz8ly41cg8q6s.m.pipedream.net",
-            data:
-                {
-                    data:
-                        {
-                            userId: $("#userId").val(),
-                            password:$("#password").val()
-                        }
-                },
-            success:function (data) {
+            url: actionUrl + '?' + $.param(data),
+            // data: $form.serialize(), // serializes the form's elements.
+            // data: getFormData($form),
+            dataType: "json",
+            data: {
+                data: data
+            }, // serializes the form's elements.
+            success: function (data) {
                 if (data && !data.ret && !isNaN(data.ret)) {
                     $.cookie("loginState",true,10*60*24)
                     window.location.href = "index.html";
                 }else {
-                    alert("ログイン失敗！"+data.msg);
+                    alert("ログイン失敗！".concat(!!data.msg?data.msg:""));
                 }
             },
             error:function (data) {
-                alert("ログイン失敗！"+data.msg)
+                alert("ログイン失敗！".concat(!!data.msg?data.msg:""));
             }
         })
+    }
 
-
-        /*if ($("#userId").val()=="admin"&&$("#password").val()=="admin"){
-            if ($.cookie("loginState",true,10/60/24)){
-                window.location.href="index.html";
-            }
-        }else{
-            alert("ログイン失敗！")
-        }*/
+    $("form").submit(function(event) {
+        event.preventDefault();
+        ajaxLogin();
+        // return false;
     })
 </script>
 </html>

@@ -1,0 +1,166 @@
+:icons: font
+:hardbreaks-option:
+
+= 前后端分离的接口设计
+
+[NOTE]
+====
+数据通信方式和 get(获取) 和 post(提交);
+
+数据交换格式为 json;
+
+通信端口：26000
+
+====
+
+## 登录接口
+
+[width="100%"]
+|====================
+| URL       2+|/device/login
+|  http method 2+|  post
+3+|data
+| userId | 用户名|  "admin"
+|  password| 密码|  "admin"
+3+|数据返回
+| ret | 结果 |0:成功 -1:失败
+| msg | 返回消息（String）|
+| data | 数据 |
+|====================
+
+
+## 获取接口
+[width="100%"]
+|====================
+3+|统一使用一个接口获取所有的数据，简化接口数量
+| URL       2+|/device/getAllData
+|  http method 2+|  get
+3+|data
+| firmware   | 固件版本    |
+| mac        | mac         |
+| date       | 服务器日期  |"2023-02-01"
+| time       | 服务器时间  | "1:00:00"
+| ntpOn      | ntp 开启  |0或者没有上传时:Off ip;1：On
+| ntp        | ntp 服务器  |
+| ipSync     | ip取得方法  | 0:固定 ip;1：DHCP
+| ip         | ip          |
+| port       | port        |
+| gateway    | 网关        |
+| subnet     | 子网        |
+| room       | 房间编号    |
+| command    | 命令        |
+| serverIp   | 服务器IP？  |
+| serverPort | 服务器 Port |
+| timeout    | 超时        |
+| duration   | 开门延迟    |
+| cardEncrypt  | 卡号加密    | 0;1
+| cardType   | 卡号加密(String)    |"有効"/"無効"
+| decryptKey | 解密密钥    |
+| decryptIv  | 解密IV      |
+| userId   | 用户名    |
+|====================
+
+
+## 提交（除登录外的其他页面数据）
+[width="100%"]
+. 修改管理员账号密码
++
+|====================
+| URL       2+|/user/updateAdminInfo
+|  http method 2+|  post
+3+|data
+| userId | 用户名|  "admin"
+|  password| 第一次输入新密码|  "admin"
+|  password2| 第二次输入新密码|  "admin"
+3+|数据返回
+| ret | 结果 |0:成功 -1:失败
+| msg | 返回消息（String）|
+| data | 数据 |
+|====================
+
+. 重启
++
+|====================
+| URL       2+|/device/reboot
+|  http method 2+|  post
+3+|data
+3+|数据返回
+| ret | 结果 |0:成功 -1:失败
+| msg | 返回消息（String）|
+| data | 数据 |
+|====================
+
+. 时间
++
+|====================
+| URL       2+|/device/setTime
+|  http method 2+|  post
+3+|data
+| date       | 服务器日期  | "2023-02-01"
+| time       | 服务器时间  | ?服务器时间前端需要走秒吗？
+| ntp        | ntp 服务器  |
+3+|数据返回
+| ret | 结果 |0:成功 -1:失败
+| msg | 返回消息（String）|
+| data | 数据 |
+|====================
+
+. 网络
++
+|====================
+| URL       2+|/device/setNetwork
+|  http method 2+|  post
+3+|data
+| ip         | ip          |
+| port       | port        |
+| gateway    | 网关        |
+| subnet     | 子网        |
+| room       | 房间编号    |
+3+|数据返回
+| ret | 结果 |0:成功 -1:失败
+| msg | 返回消息（String）|
+| data | 数据 |
+|====================
+
+
+. 通信
++
+|====================
+| URL       2+|/device/setServerControl
+|  http method 2+|  post
+3+|data
+| command    | 命令        |
+| serverIp   | 服务器IP？  |
+| serverPort | 服务器 Port |
+| timeout    | 超时        |
+| duration   | 开门延迟    |
+| card       | 卡号加密    | 0;1
+| decryptKey | 解密密钥    |
+| decryptIv  | 解密IV      |
+3+|数据返回
+| ret | 结果 |0:成功 -1:失败
+| msg | 返回消息（String）|
+| data | 数据 |
+|====================
+
+
+
+NOTE: 20230228_ChangeLog
+
+
+. 继续添加大量的输入验证
+- [*] 用户名，密码，第二密码长度判断(长度 16 内，英数字)
+- [*] 第二密码值判断
+* [*] IP,port,gateway,subnet的 ip等规则判断
+* [*] timeout,duration 值的限制
+* [*] DHCP，固定 IP 的衍生逻辑判断
+* [*] 房屋的编号的大小有效性判断
+* [*] 解密等相关的值的长度判断改为 16 位
+
+
+
+NOTE: 20230307_ChangeLog
+
+- 根据需求修改
+- [*] login 界面使用回车键直接提交
+- [*] 修改 server 的 ip 输入限制为可以输入域名等，但是没有对域名格式做更多判断，仍保留必填的要求
